@@ -17,7 +17,7 @@
     <body>
         <script type="text/javascript">
             $(document).ready(function(){
-                var socket = io.connect('https://' + document.domain + ':' + location.port + namespace);
+                var socket = io.connect('https://tahcpython.herokuapp.com:5000');
                 alert(window.location.href+':5000');
                 socket.on('connect', function(){
                    socket.send('Client connected.');
