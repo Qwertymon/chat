@@ -26,7 +26,7 @@
             var roomname = window.location.pathname.slice(10,18);
 
             $(document).ready(function(){
-                var socket = io.connect('https://tachpython.herokuapp.com:5000');
+                var socket = io.connect('https://174.129.221.117:5000');
                 socket.on('connect', function(){
                    socket.send('Client connected.');
                 });
