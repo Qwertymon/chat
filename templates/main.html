@@ -17,8 +17,9 @@
     <body>
         <script type="text/javascript">
             $(document).ready(function(){
-                var socket = io.connect('https://' + window.location.href + ':5000');
-                alert(window.location.href+':5000');
+                var host = window.location.href.substring(0, window.location.href.length - 1)
+                var socket = io.connect(host+':5000');
+                alert(host +':5000');
                 socket.on('connect', function(){
                    socket.send('Client connected.');
                 });
