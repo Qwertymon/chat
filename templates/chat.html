@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Chat Room</title>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <style type="text/css">
+        .msg{
+            background-color:white;
+            width: 400px;
+            height: 70%;
+            border: 1px dotted black;
+            overflow-y: scroll;
+        }
+        #send{
+            background-color:#159AFC;
+            font-size:20px;
+            color:white;
+            border: none;
+            border-radius: 4px;
+            cursor:pointer;
+        }  
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var roomname = window.location.pathname.slice(10,18);
+
+            $(document).ready(function(){
+                var socket = io.connect('http://127.0.0.1:5000');
+                socket.on('connect', function(){
+                   socket.send('Client connected.');
+                });
+                $('#send').on('click', function(){
+                    socket.send(sessionStorage.getItem("nickname") + ": " + $('#user_message').val() + " " + roomname + " ");
+                    $('#user_message').val('');
+                });
+                socket.on(roomname, function(msg){
+                    msg = msg.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+                  $('#messages').append('<li>'+msg+'</li>');
+                });
+            });
+        </script>
+        <div class = "msg">
+            <ul id="messages"></ul>
+        </div>
+        <input type="text" id="user_message">
+        <button id="send">Send</button>
+
+    </body>
+</html>
