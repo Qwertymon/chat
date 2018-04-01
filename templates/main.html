@@ -17,7 +17,7 @@
     <body>
         <script type="text/javascript">
             $(document).ready(function(){
-                var socket = io.connect('http://127.0.0.1:5000');
+                var socket = io.connect('https://tachpython.herokuapp.com:5000');
                 socket.on('connect', function(){
                    socket.send('Client connected.');
                 });
@@ -26,7 +26,7 @@
                     socket.send("room");
                 });
                 socket.on('key', function(msg){
-                  window.location.replace("http://127.0.0.1:5000/chatroom/"+msg);
+                  window.location.replace("https://tachpython.herokuapp.com/chatroom/"+msg);
                 });
             });
         </script>
