@@ -17,8 +17,8 @@
     <body>
         <script type="text/javascript">
             $(document).ready(function(){
-                var socket = io.connect(window.location.href);
-                alert(window.location.href);
+                var socket = io.connect(window.location.href+':5000');
+                alert(window.location.href+':5000');
                 socket.on('connect', function(){
                    socket.send('Client connected.');
                 });
