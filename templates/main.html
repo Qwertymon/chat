@@ -1,41 +1,10 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Chat Room</title>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-        <style type="text/css">
-        	#send{
-        		background-color:#159AFC;
-        		font-size:20px;
-        		color:white;
-        		border: none;
-        		border-radius: 4px;
-        		cursor:pointer;
-        	}
-        </style>
-    </head>
-    <body>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                var host = window.location.href.substring(0, window.location.href.length - 1)
-                var socket = io.connect(host+':5000');
-                alert(host +':5000');
-                socket.on('connect', function(){
-                   socket.send('Client connected.');
-                });
-                $('#send').on('click', function(){
-                	sessionStorage.setItem("nickname", $('#nickname').val());
-                    socket.send("room");
-                });
-                socket.on('key', function(msg){
-                  window.location.replace("https://tachpython.herokuapp.com/chatroom/"+msg);
-                });
-            });
-        </script>
-        <ul id="key"></ul>
-        <center>
-        		<input type = "text" id = "nickname" placeholder = "nickname"><br><br>
-        	    <button id="send">Generate Room</button>
-        </center>
-    </body>
+<head> 
+	<title></title>
+</head>
+<body>
+	<p>IP Adrees</p>
+	{{ title }}
+</body>
 </html>
