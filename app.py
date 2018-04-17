@@ -1,10 +1,13 @@
-from flask import Flask
-import threading
+import socket
 
-app = Flask(__name__)
-@app.route('/')
-def index():
-   return "Hello"
+host = socket.gethostbyname(socket.gethostname())
+port = 8080
 
-if __name__ == "__main__":
-   app.run()
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((host,port))
+s.listen(10)
+f = open("file.txt",'w')
+f.write("created "+str(host))
+f.close()
+
+s.close()
