@@ -1,16 +1,12 @@
-from flask import Flask
-from datetime import datetime
+from flask import Flask, render_template
+import socket
+
+host = socket.gethostbyname(socket.gethostname())
 app = Flask(__name__)
-
 @app.route('/')
-def homepage():
-    the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
+def index():
+    global host
+    return render_template('main.html', title = host)
 
-    return """
-    <h1>Hello heroku</h1>
-    <p>It is currently {time}.</p>
-    <img src="http://loremflickr.com/600/400" />
-    """.format(time=the_time)
-
-if __name__ == '__main__':
+if  __name__ == "__main__":
     app.run(debug=True, use_reloader=True)
