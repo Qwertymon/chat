@@ -3,13 +3,13 @@ import threading
 from flask import Flask
 
 
-host = 'myownserver.herokuapp.com'
+
 host_ip = ''
 chk_server = "false"
 
 def server():
-    global host, host_ip, chk_server
-    host_ip = socket.gethostbyname(host)
+    global host_ip, chk_server
+    host_ip = socket.gethostbyname(socket.gethostname())
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((host_ip,8080))
     s.listen(10)
